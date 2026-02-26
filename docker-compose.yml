@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   web:
-    build: https://github.com/NMC-Productions/opencart3-docker.git
+    build: .
     container_name: opencart
     depends_on:
       - db
