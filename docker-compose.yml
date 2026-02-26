@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  web:
+    build: https://github.com/NMC-Productions/opencart3-docker.git
+    container_name: opencart
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
+    volumes:
+      - opencart_www:/var/www
+    restart: unless-stopped
+
+  db:
+    image: mariadb:11
+    container_name: mariadb
+    environment:
+      MARIADB_ROOT_PASSWORD: rootpass
+      MARIADB_DATABASE: opencart
+      MARIADB_USER: opencart
+      MARIADB_PASSWORD: opencartpass
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    restart: unless-stopped
+
+volumes:
+  opencart_www:
+  mariadb_data:
