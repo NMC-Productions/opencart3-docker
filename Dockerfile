@@ -52,6 +52,9 @@ COPY --from=builder /build/upload/ html/
 
 RUN mv /var/www/html/config-dist.php /var/www/html/config.php && mv /var/www/html/admin/config-dist.php /var/www/html/admin/config.php
 
+# Replace MyISAM engine with InnoDB, as MyISAM is unsupported by most cloud providers
+RUN sed -i 's/ENGINE=MyISAM/ENGINE=InnoDB/g' /var/www/html/install/opencart.sql
+
 RUN cp /var/www/html/php.ini /usr/local/etc/php/
 
 # This is temporary, only for OpenCart to install/move its stuff; entrypoint.sh secures the folders at the 2nd server startup
