@@ -24,4 +24,4 @@ if grep -q "define('DIR_STORAGE', '/var/www/storage/');" "$CONFIG_WEB" && [ ! -f
     rm -rf /var/www/html/install
 fi
 
-exec apache2-foreground
+exec php-fpm

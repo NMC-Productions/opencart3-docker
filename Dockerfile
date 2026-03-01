@@ -20,9 +20,9 @@ RUN curl -L -o opencart.zip \
     && rm -rf opencart.zip opencart-${OC_VERSION}
 
 # ---------------------------------------------------------
-# 2. Runtime stage — minimal PHP + Apache
+# 2. Runtime stage — PHP FPM
 # ---------------------------------------------------------
-FROM php:8.4-apache
+FROM php:8.4-fpm
 
 RUN apt-get update && apt-get install -y \
         vim \
@@ -40,9 +40,6 @@ RUN apt-get update && apt-get install -y \
       --with-webp \
  && docker-php-ext-install gd mysqli zip \
  && rm -rf /var/lib/apt/lists/*
-
-RUN echo "Listen 8080" > /etc/apache2/ports.conf \
-    && sed -i "s/<VirtualHost \*:80>/<VirtualHost \*:8080>/" /etc/apache2/sites-available/000-default.conf
 
 WORKDIR /var/www
 RUN mkdir -p html
@@ -64,4 +61,4 @@ COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
-EXPOSE 8080
+EXPOSE 9000
