@@ -5,7 +5,7 @@ FROM debian:stable-slim AS builder
 
 ARG OC_VERSION=3.0.5.0
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y \
         unzip \
         curl \
         ca-certificates \
@@ -24,7 +24,7 @@ RUN curl -L -o opencart.zip \
 # ---------------------------------------------------------
 FROM php:8.4-apache
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y \
         vim \
         zlib1g-dev \
         libgd-dev \
