@@ -4,7 +4,7 @@ The official OpenCart repository contains a Docker configuration, but for my set
 
 ### Running locally with Docker Compose
 
-For a quick test, the `docker-compose.yml` file configures a SQL server next to the Apache web server running OpenCart. Once Docker builds and starts the containers, OpenCart will be accessible at `http://localhost:8080`. Please note that running a database inside docker-compose is not a good idea for a production setup, unless you really know what you're doing. 
+For a quick test, the `docker-compose.yml` file configures a SQL server next to a nginx web server and a PHP backend running OpenCart. Once Docker builds and starts the all containers, OpenCart will be accessible at `http://localhost:8080`. Please note that running a database inside docker-compose is not a good idea for a production setup, unless you really know what you're doing. 
 
 ### OpenCart configuration and storage
 
