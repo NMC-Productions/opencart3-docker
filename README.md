@@ -1,10 +1,19 @@
-## OpenCart 3.0.5.0 Dockerfile
+## OpenCart 3.0.5.0 Dockerfile & Docker Compose
 
-The official OpenCart repository contains a Docker configuration, but for my setup, it was unusable. I've created this repository mostly for my own testing purposes, having limited experience with the Apache / PHP ecosystem. Some attempts to secure the OpenCart deployment have been made, but this is by no means a production ready setup. Use at your own risk.
+The official OpenCart repository contains a Docker configuration, but for my setup, it was unusable. I've created this repository mostly for my own testing purposes, having limited experience within the PHP ecosystem. Some attempts have been made to secure the OpenCart deployment, but this is by no means a production ready setup. Use at your own risk.
 
-### Running locally with Docker Compose
+### Running OpenCart locally with Docker Compose
 
-For a quick test, the `docker-compose.yml` file configures a SQL server next to a nginx web server and a PHP backend running OpenCart. Once Docker builds and starts the all containers, OpenCart will be accessible at `http://localhost:8080`. Please note that running a database inside docker-compose is not a good idea for a production setup, unless you really know what you're doing. 
+As an example, the `docker-compose.yml` file configures several containers:
+
+ - MySQL-compatible database
+ - nginx web server 
+ - PHP-FPM backend running OpenCart (built from the Dockerfile available in this repository)
+
+Once Docker builds and starts the all containers, OpenCart will be accessible at `http://localhost:8080`. 
+
+#### Important Note
+The provided `docker-compose.yml` is for testing purposes only. Running a database inside docker-compose is not a good idea for a production setup, unless you really know what you're doing. 
 
 ### OpenCart configuration and storage
 
