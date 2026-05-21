@@ -52,7 +52,8 @@ RUN mv /var/www/html/config-dist.php /var/www/html/config.php && mv /var/www/htm
 # Replace MyISAM engine with InnoDB, as MyISAM is unsupported by most cloud providers
 RUN sed -i 's/ENGINE=MyISAM/ENGINE=InnoDB/g' /var/www/html/install/opencart.sql
 
-RUN cp /var/www/html/php.ini /usr/local/etc/php/conf.d/opencart.ini
+RUN cp /var/www/html/php.ini /usr/local/etc/php/conf.d/opencart.ini \
+    && sed -i 's/upload_max_filesize = 999M/upload_max_filesize = 100M\npost_max_size = 100M/' /usr/local/etc/php/conf.d/opencart.ini
 
 # This is temporary, only for OpenCart to install/move its stuff; entrypoint.sh secures the folders at the 2nd server startup
 RUN chown -R www-data:www-data /var/www
