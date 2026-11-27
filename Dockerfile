@@ -3,7 +3,7 @@
 # ---------------------------------------------------------
 FROM debian:stable-slim AS builder
 
-ARG OC_VERSION=3.0.5.0
+ARG OC_VERSION=3.0.5.1
 
 RUN apt-get update && apt-get install -y \
         unzip \
@@ -22,7 +22,7 @@ RUN curl -L -o opencart.zip \
 # ---------------------------------------------------------
 # 2. Runtime stage — PHP FPM
 # ---------------------------------------------------------
-FROM php:8.4-fpm
+FROM php:8.6-fpm
 
 RUN apt-get update && apt-get install -y \
         vim \
